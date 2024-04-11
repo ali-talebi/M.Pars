@@ -1,0 +1,384 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/shop-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:32:03 GMT -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'front/css/base.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/choices.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/all.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/vendor/leaflet/leaflet.css' %}"/>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{% static 'front/css/vendors.css' %}">
+  <link rel="stylesheet" href="{% static 'front/css/main.css' %}">
+
+  <title>Educrat - قالب HTML دوره آنلاین و آموزش اِدُکرات</title>
+</head>
+
+<body class="preloader-visible" data-barba="wrapper">
+  <!-- preloader start -->
+  <div class="preloader js-preloader">
+    <div class="preloader__bg"></div>
+  </div>
+  <!-- preloader end -->
+
+
+  <main class="main-content">
+
+    {% block header %}
+    {% include 'menu.html' %}
+    {% endblock header %}
+
+    <div class="content-wrapper  js-content-wrapper">
+
+
+      <section data-anim="fade" class="breadcrumbs ">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="breadcrumbs__content">
+
+                <div class="breadcrumbs__item ">
+                  <a href="{% url 'home:home' %}">صفحه اصلی</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">سایر</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="{% url 'product:total_product' %}">فروشگاه</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">جزئیات محصول</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="layout-pt-lg layout-pb-md">
+        <div class="container">
+          <div class="row y-gap-60 justify-between items-center">
+            <div class="col-lg-6">
+              <div class="js-shop-slider">
+                <div class="shopSingle-preview__image js-slider-slider">
+                  <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                      <a data-barba href="{{product.picture1.url}}" class="gallery__item js-gallery" data-gallery="gallery1">
+                        <div class="ratio ratio-63:57">
+                          <img  class="absolute-full-center rounded-8" src="{{product.picture1.url}}" alt="project image">
+                        </div>
+
+                        <div class="gallery__button -bottom-right">
+                          <i class="icon" data-feather="plus"></i>
+                        </div>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a data-barba href="{{product.picture2.url}}" class="gallery__item js-gallery" data-gallery="gallery1">
+                        <div class="ratio ratio-63:57">
+                          <img  class="absolute-full-center rounded-8" src="{{product.picture2.url}}" alt="project image">
+                        </div>
+
+                        <div class="gallery__button -bottom-right">
+                          <i class="icon" data-feather="plus"></i>
+                        </div>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a data-barba href="{{product.picture3.url}}" class="gallery__item js-gallery" data-gallery="gallery1">
+                        <div class="ratio ratio-63:57">
+                          <img  class="absolute-full-center rounded-8" src="{{product.picture3.url}}" alt="project image">
+                        </div>
+
+                        <div class="gallery__button -bottom-right">
+                          <i class="icon" data-feather="plus"></i>
+                        </div>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a data-barba href="{{product.picture4.url}}" class="gallery__item js-gallery" data-gallery="gallery1">
+                        <div class="ratio ratio-63:57">
+                          <img  class="absolute-full-center rounded-8" src="{{product.picture4.url}}" alt="project image">
+                        </div>
+
+                        <div class="gallery__button -bottom-right">
+                          <i class="icon" data-feather="plus"></i>
+                        </div>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="row y-gap-10 x-gap-10 pt-10 js-slider-pagination">
+
+                  <div data-cursor class="col-auto gallery__item">
+                    <img  class="size-90 object-cover rounded-8" src="{{product.picture1.url}}" alt="project image">
+                  </div>
+
+                  <div data-cursor class="col-auto gallery__item">
+                    <img  class="size-90 object-cover rounded-8" src="{{product.picture2.url}}" alt="project image">
+                  </div>
+
+                  <div data-cursor class="col-auto gallery__item">
+                    <img  class="size-90 object-cover rounded-8" src="{{product.picture3.url}}" alt="project image">
+                  </div>
+
+                  <div data-cursor class="col-auto gallery__item">
+                    <img   class="size-90 object-cover rounded-8" src="{{product.picture4.url}}"   alt="project image">
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="pb-90 md:pb-0">
+                <h2 class="text-24 fw-500 mt-4"> {{product.product_name}}  </h2>
+                <div class="text-20 fw-500 text-purple-1 mt-15"> {{product.price}} تومان</div>
+
+                <div class="mt-30">
+                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است، برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>
+                </div>
+
+                <div class="shopSingle-info__action row x-gap-20 y-gap-20 pt-30">
+                  <div class="col-auto">
+                    <div class="input-counter js-input-counter">
+                      <input class='input-counter__counter' type="number" placeholder="مقدار ..." value='0' />
+
+                      <div class="input-counter__controls">
+                        <button class='input-counter__up js-down'>
+                          <i class='icon' data-feather="minus"></i>
+                        </button>
+
+                        <button class='input-counter__down js-up'>
+                          <i class='icon' data-feather="plus"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-auto">
+                    <button class="button h-50 px-45 -purple-1 text-white">افزودن به سبد</button>
+                  </div>
+                </div>
+
+                <div class="pt-30">
+                  <button class="d-flex items-center text-light-1">
+                    <i class="icon size-20 ml-8" data-feather="heart"></i>
+                    افزودن به علاقه مندی ها
+                  </button>
+                </div>
+
+                <div class="pt-30">
+                  <p>دسته بندی: {{product.category}}</p>
+                  <p>تگ:
+                    {% for tag in product.tags.all %}
+                      {{tag.name}} ,
+                    {% endfor %}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout-pt-md layout-pb-md">
+        <div class="tabs -active-purple-1 js-tabs">
+          <div class="row pt-30 border-top-dark">
+            <div class="col-12">
+              <div class="tabs__controls d-flex justify-center js-tabs-controls">
+                <button class="tabs__button js-tabs-button is-active" data-tab-target=".-tab-item-1" type="button">
+                  توضیحات
+                </button>
+                <button class="tabs__button js-tabs-button mr-30" data-tab-target=".-tab-item-2" type="button">
+                  دیدگاه ها ـ {{product.comment_product.all.count}}
+                </button>
+              </div>
+            </div>
+
+            <div class="container pt-60">
+              <div class="row justify-center">
+                <div class="col-xl-8 col-lg-10 justify-center">
+                  <div class="tabs__content js-tabs-content">
+                    <div class="tabs__pane -tab-item-1 is-active">
+                      <h4 class="text-18 fw-500">{{product.product_name}}</h4>
+                      <p class="mt-30">
+                      {{product.text|safe}}
+                      </p>
+                    </div>
+
+                    <div class="tabs__pane -tab-item-2">
+                      <div class="blogPost -comments">
+                        <div class="blogPost__content">
+                          <h2 class="text-20 fw-500">
+                            دیدگاه ها
+                          </h2>
+
+                          <ul class="comments__list mt-30">
+                            {% for i in product.comment_product.all %}
+                            <li class="comments__item">
+                              <div class="comments__item-inner md:direction-column">
+                                <div class="comments__img ml-20">
+                                  <div class="bg-image rounded-full js-lazy" data-bg="img/avatars/1.png"></div>
+                                </div>
+
+                                <div class="comments__body md:mt-15">
+                                  <div class="comments__header">
+                                    <h4 class="text-17 fw-500 lh-15">
+                                      {{i.person.full_name}}
+                                      <span class="text-13 text-light-1 fw-400">3 روز قبل</span>
+                                    </h4>
+
+                                    <div class="stars"></div>
+                                  </div>
+
+                                  <h5 class="text-15 fw-500 mt-15">بهترین دوره آموزشی</h5>
+                                  <div class="comments__text mt-10">
+                                    <p>این دوره بسیار کاربردی است. پروفسور سمیعی دقیقاً هر الگوریتم را توضیح می دهد و حتی سعی می کند مفاهیم ریاضی و آماری پشت هر الگوریتم را شهودی ارائه دهد. بسیار از شما متشکرم.</p>
+                                  </div>
+
+                                  <div class="comments__helpful mt-20">
+                                    <span class="text-13 text-purple-1">آیا این دیدگاه مفید بود؟</span>
+                                    <button class="button text-13 -sm -purple-1 text-white">بله</button>
+                                    <button class="button text-13 -sm -light-7 text-purple-1">خیر</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="respondForm pt-30">
+                        <h3 class="text-20 fw-500">
+                          ثبت دیدگاه
+                        </h3>
+
+                        <div class="mt-30">
+                          <h4 class="text-16 fw-500">این محصول را دوست داشتید؟</h4>
+                          <div class="d-flex x-gap-10 pt-10">
+                            <div class="icon-star text-14 text-yellow-1"></div>
+                            <div class="icon-star text-14 text-yellow-1"></div>
+                            <div class="icon-star text-14 text-yellow-1"></div>
+                            <div class="icon-star text-14 text-yellow-1"></div>
+                            <div class="icon-star text-14 text-yellow-1"></div>
+                          </div>
+                        </div>
+
+                        <form class="contact-form respondForm__form row y-gap-30 pt-30" action="#">
+                          <div class="col-12">
+                            <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">عنوان</label>
+                            <input type="text" name="title" placeholder="محصول خوب">
+                          </div>
+                          <div class="col-12">
+                            <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">متن دیدگاه</label>
+                            <textarea name="comment" placeholder="نظر خود را بنویسید" rows="8"></textarea>
+                          </div>
+                          <div class="col-12">
+                            <button type="submit" name="submit" id="submit" class="button -md -purple-1 text-white">
+                              ثبت دیدگاه
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout-pt-md layout-pb-lg">
+        <div class="container">
+          <div class="row justify-center text-center">
+            <div class="col-auto">
+
+              <div class="sectionTitle ">
+
+                <h2 class="sectionTitle__title ">محصولات مشابه</h2>
+
+                <p class="sectionTitle__text ">بیش از 10000 طرح منحصر به فرد در لیست دوره های آنلاین</p>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row y-gap-32 pt-60 sm:pt-40">
+
+            {% for i in like_products %}
+            <div class="col-lg-3 col-sm-6">
+              <div class="productCard -type-1 text-center">
+                <div class="productCard__image">
+                  <img src="{{i.picture1.url}}" alt="Product image">
+
+                  <div class="productCard__controls">
+                    <a href="{{i.get_absolute_url}}" class="productCard__icon">
+                      <i class="icon" data-feather="eye"></i>
+                    </a>
+                    <a href="#" class="productCard__icon">
+                      <i class="icon" data-feather="heart"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="productCard__content mt-20">
+                  <div class="text-14 lh-1">
+                    {% for j in i.tags.all %}
+                    <a href="#">{{j.name}}</a>،
+                    {% endfor %}
+                  </div>
+                  <h4 class="text-16 fw-500 mt-15">  {{i.product_name}} </h4>
+                  <div class="text-17 fw-500 text-purple-1 mt-15">{{i.price}} تومان</div>
+
+                  <div class="productCard__button d-inline-block">
+                    <a href="#" class="button -md -outline-purple-1 -rounded text-dark-1 mt-15">افزودن به سبد</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+
+
+          </div>
+        </div>
+      </section>
+
+      {% block footer %}
+      {% include 'footer.html' %}
+      {% endblock footer %}
+
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="{% static 'front/vendor/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'front/js/vendors.js' %}"></script>
+  <script src="{% static 'front/js/main.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/shop-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:32:04 GMT -->
+</html>

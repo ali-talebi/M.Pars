@@ -1,0 +1,523 @@
+{% load static %}
+{% load jformat %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/event-list-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:31:51 GMT -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'front/css/base.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/choices.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/all.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/vendor/leaflet/leaflet.css' %}"/>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{% static 'front/css/vendors.css' %}">
+  <link rel="stylesheet" href="{% static 'front/css/main.css' %}">
+
+  <title> رویداد های مکاپارس  </title>
+</head>
+
+<body class="preloader-visible" data-barba="wrapper">
+  <!-- preloader start -->
+  <div class="preloader js-preloader">
+    <div class="preloader__bg"></div>
+  </div>
+  <!-- preloader end -->
+
+
+  <main class="main-content">
+
+    {% block header %}
+    {% include 'menu.html' %}
+    {% endblock %}
+
+    <div class="content-wrapper  js-content-wrapper">
+
+
+      <section data-anim="fade" class="breadcrumbs ">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="breadcrumbs__content">
+
+                <div class="breadcrumbs__item ">
+                  <a href="{% url 'home:home' %}">صفحه اصلی</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">لیست رویدادها</a>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="page-header -type-1">
+        <div class="container">
+          <div class="page-header__content">
+            <div class="row justify-center text-center">
+              <div class="col-auto">
+                <div data-anim="slide-up delay-1">
+
+                  <h1 class="page-header__title">لیست رویدادها</h1>
+
+                </div>
+
+                <div data-anim="slide-up delay-2">
+
+                  <p class="page-header__text">
+                  رویداد های برگزار شده مکاپارس
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="layout-pt-md layout-pb-lg">
+        <div data-anim-wrap class="container">
+          <div class="tabs -pills js-tabs">
+            <div data-anim-child="slide-up delay-3" class="flex-wrap tabs__controls d-flex justify-center x-gap-10 js-tabs-controls flex-wrap text-nowrap is-in-view">
+
+              <!-- <div>
+                <button class="tabs__button px-15 py-8 rounded-8 js-tabs-button is-active" data-tab-target=".-tab-item-1" type="button">همه</button>
+              </div> -->
+
+
+
+
+
+
+
+
+            </div>
+
+            <div class="tabs__content pt-40 js-tabs-content">
+
+              <div class="tabs__pane -tab-item-1 is-active">
+                <div data-anim="slide-up delay-4" class="row y-gap-30 pt-30">
+
+                  {% for i in total_event %}
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img style="width: 400px;height: 250px" src="{{i.picture.url}}" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                            {{i.event_name}}
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14"> {{i.time|jformat:"%d %m %Y"}} </div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14"> {{i.location}} </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="{{i.get_absolute_url}}" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">رزرو کردن</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+
+
+
+
+
+
+
+
+
+                </div>
+
+                <div class="row justify-center pt-60 lg:pt-40">
+                  <div class="col-auto">
+                    <div class="pagination -buttons">
+
+
+                      <div class="pagination__count">
+                        {% if total_event.has_next %}
+                        <a href="{% url 'Event:event_list' total_event.next_page_number %}">بعدی</a>
+                        {% endif %}
+                        {% if total_event.has_previous %}
+
+                            <a href="{% url 'Event:event_list' total_event.previous_page_number  %}">قبلی</a>
+                        {% endif %}
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tabs__pane -tab-item-2 ">
+                <div data-anim="slide-up delay-4" class="row y-gap-30 pt-30">
+
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img src="img/courses-list/1.png" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                              جامع‌ترین دوره آنلاین علم‌داده
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14">6 آبان، 1399</div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14">ایران، تهران</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="#" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">خرید</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img src="img/courses-list/2.png" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                              جامع‌ترین دوره آنلاین علم‌داده
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14">6 آبان، 1399</div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14">ایران، تهران</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="#" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">خرید</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img src="img/courses-list/3.png" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                              جامع‌ترین دوره آنلاین علم‌داده
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14">6 آبان، 1399</div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14">ایران، تهران</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="#" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">خرید</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img src="img/courses-list/4.png" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                              جامع‌ترین دوره آنلاین علم‌داده
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14">6 آبان، 1399</div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14">ایران، تهران</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="#" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">خرید</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img src="img/courses-list/5.png" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                              جامع‌ترین دوره آنلاین علم‌داده
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14">6 آبان، 1399</div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14">ایران، تهران</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="#" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">خرید</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img src="img/courses-list/6.png" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                              جامع‌ترین دوره آنلاین علم‌داده
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14">6 آبان، 1399</div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14">ایران، تهران</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="#" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">خرید</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img src="img/courses-list/7.png" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                              جامع‌ترین دوره آنلاین علم‌داده
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14">6 آبان، 1399</div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14">ایران، تهران</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="#" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">خرید</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img src="img/courses-list/8.png" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                              جامع‌ترین دوره آنلاین علم‌داده
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14">6 آبان، 1399</div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14">ایران، تهران</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="#" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">خرید</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6">
+                    <div class="eventCard -type-1">
+                      <div class="eventCard__img">
+                        <img src="img/courses-list/9.png" alt="image">
+                      </div>
+
+                      <div class="eventCard__bg bg-white">
+                        <div class="eventCard__content y-gap-10">
+                          <div class="eventCard__inner">
+                            <h4 class="eventCard__title text-16 fw-500">
+                              جامع‌ترین دوره آنلاین علم‌داده
+                            </h4>
+                            <div class="d-flex x-gap-15 pt-10">
+                              <div class="d-flex items-center">
+                                <div class="icon-calendar-2 text-16 ml-8"></div>
+                                <div class="text-14">6 آبان، 1399</div>
+                              </div>
+                              <div class="d-flex items-center">
+                                <div class="icon-location text-16 ml-8"></div>
+                                <div class="text-14">ایران، تهران</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="eventCard__button">
+                            <a href="#" class="button -sm -rounded -outline-purple-1 text-purple-1 px-25">خرید</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row justify-center pt-60 lg:pt-40">
+                  <div class="col-auto">
+                    <div class="pagination -buttons">
+                      <button class="pagination__button -prev">
+                        <i class="icon icon-chevron-right"></i>
+                      </button>
+
+                      <div class="pagination__count">
+                        <a href="#">1</a>
+                        <a class="-count-is-active" href="#">2</a>
+                        <a href="#">3</a>
+                        <span>...</span>
+                        <a href="#">67</a>
+                      </div>
+
+                      <button class="pagination__button -next">
+                        <i class="icon icon-chevron-left"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {% block footer %}
+
+      {% include 'footer.html' %}
+      {% endblock %}
+
+
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="{% static 'front/vendor/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'front/js/vendors.js' %}"></script>
+  <script src="{% static 'front/js/main.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/event-list-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:31:52 GMT -->
+</html>

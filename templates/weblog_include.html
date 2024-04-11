@@ -1,0 +1,80 @@
+          <section class="layout-pt-lg layout-pb-lg bg-light-3">
+        <div class="container">
+          <div class="row y-gap-15 justify-between items-end">
+            <div class="col-lg-6">
+
+              <div class="sectionTitle ">
+
+                <h2 class="sectionTitle__title "> وبلاگ مکاپارس</h2>
+
+                <p class="sectionTitle__text ">به تمامی پست های وبلاگ مهندسی مکاپارس از قسمت زیر دسترسی داشته باشید</p>
+
+              </div>
+
+            </div>
+
+            <div class="col-auto">
+              <div class="d-flex justify-center x-gap-15 items-center">
+                <div class="col-auto">
+                  <button class="d-flex items-center text-24 arrow-left-hover js-events-slider-prev">
+                    <i class="icon icon-arrow-right"></i>
+                  </button>
+                </div>
+                <div class="col-auto">
+                  <div class="pagination -arrows js-events-slider-pagination"></div>
+                </div>
+                <div class="col-auto">
+                  <button class="d-flex items-center text-24 arrow-right-hover js-events-slider-next">
+                    <i class="icon icon-arrow-left"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-60 lg:pt-40 js-section-slider" data-gap="30" data-pagination="js-events-slider-pagination" data-nav-prev="js-events-slider-prev" data-nav-next="js-events-slider-next" data-slider-cols="xl-3 lg-2">
+            <div class="swiper-wrapper">
+
+              {% for i in posts %}
+              <div class="swiper-slide">
+                <div data-anim="slide-left delay-2" class="eventCard -type-1">
+                  <div class="eventCard__img">
+                    <img width="200px" height="300px" src="{{i.picture.url}}" alt="image">
+                  </div>
+
+                  <div class="eventCard__bg bg-white">
+                    <div class="eventCard__content y-gap-10">
+                      <div class="eventCard__inner">
+                        <h4 class="eventCard__title text-16 fw-500">
+                        {{i.post_name}}
+                        </h4>
+                        <div class="d-flex x-gap-15 pt-10">
+                        </div>
+                      </div>
+
+                      <div class="eventCard__button">
+                        <a href="{{i.get_absolute_url}}" class="button -sm -rounded -purple-1 text-white px-25">مشاهده</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+
+
+
+
+
+            </div>
+          </div>
+
+          <div class="row pt-60 lg:pt-40">
+            <div class="col-auto">
+              <a href="{% url 'weblog:Total_Post' %}" class="button -icon -outline-purple-1 text-purple-1 fw-500">
+                مشاهده همه
+                <span class="icon-arrow-top-right text-14 mr-10"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>

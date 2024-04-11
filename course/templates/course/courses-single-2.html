@@ -1,0 +1,1226 @@
+{% load static %}
+{% load humanize %}
+{% load jformat %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/courses-single-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:30:52 GMT -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'front/css/base.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/choices.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/all.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/vendor/leaflet/leaflet.css' %}"/>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{% static 'front/css/vendors.css' %}">
+  <link rel="stylesheet" href="{% static 'front/css/main.css' %}">
+
+  <title> دوره  </title>
+</head>
+
+<body class="preloader-visible" data-barba="wrapper">
+  <!-- preloader start -->
+  <div class="preloader js-preloader">
+    <div class="preloader__bg"></div>
+  </div>
+  <!-- preloader end -->
+
+
+  <main class="main-content">
+    {% block header %}
+    {% include 'menu.html' %}
+    {% endblock %}
+
+
+    <div class="content-wrapper  js-content-wrapper">
+
+      {% block messages %}
+      {% include 'messages.html' %}
+      {% endblock messages %}
+      <section data-anim="fade" class="breadcrumbs bg-dark-1">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="breadcrumbs__content">
+
+                <div class="breadcrumbs__item ">
+                  <a href="{% url 'home:home' %}">صفحه اصلی</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">جزئیات دوره</a>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <div class="js-pin-container">
+        <section class="page-header -type-5 bg-dark-1">
+          <div class="page-header__bg">
+            <div class="bg-image js-lazy" data-bg="{% static 'front/img/event-single/bg.png' %}"></div>
+          </div>
+
+          <div class="container">
+            <div class="page-header__content pt-90 pb-90">
+              <div class="row y-gap-30 relative">
+                <div class="col-xl-7 col-lg-8">
+                  <div class="d-flex x-gap-15 y-gap-10 pb-20">
+                    {% for i in course.tags.all %}
+                    <div>
+                      <div class="badge px-15 py-8 text-11 bg-green-1 text-dark-1 fw-400">{{i.name}}</div>
+                    </div>
+                    {% empty %}
+                    <p>بدون تگ</p>
+                    {% endfor %}
+                  </div>
+
+                  <div data-anim="slide-up delay-1">
+                    <h1 class="text-30 lh-14 text-white pl-60 lg:pl-0 ff-estedad"> {{course.course_name}}   </h1>
+                  </div>
+
+                  <p class="col-xl-9 mt-20"> {{course.intoduce_centense}}
+
+                  </p>
+
+                  <div class="d-flex x-gap-30 y-gap-10 items-center flex-wrap pt-20">
+                    <div class="d-flex items-center">
+                      <div class="text-14 lh-1 text-yellow-1 ml-10">4.5</div>
+                      <div class="d-flex x-gap-10 items-center">
+                        <div class="icon-star text-9 text-yellow-1"></div>
+                        <div class="icon-star text-9 text-yellow-1"></div>
+                        <div class="icon-star text-9 text-yellow-1"></div>
+                        <div class="icon-star text-9 text-yellow-1"></div>
+                        <div class="icon-star text-9 text-yellow-1"></div>
+                      </div>
+                      <div class="text-14 lh-1 text-light-1 mr-10">(1991)</div>
+                    </div>
+
+
+                    <div class="d-flex items-center text-light-1">
+                      <div class="icon icon-person-3 text-13"></div>
+                      <div class="text-14 mr-8">853 نفر در این دوره ثبت نام کردند</div>
+                    </div>
+
+                    <div class="d-flex items-center text-light-1">
+                      <div class="icon icon-wall-clock text-13"></div>
+                      <div class="text-14 mr-8">{{course.update|jformat:"%d - %m - %Y"}}  آخرین به روز رسانی</div>
+                    </div>
+
+                  </div>
+
+                  <div class="d-flex items-center pt-20">
+                    <div class="bg-image size-30 rounded-full js-lazy" data-bg="{{course.teacher.picture.url}}"></div>
+                    <div class="text-14 lh-1 mr-10"> {{course.teacher.full_name}}</div>
+                  </div>
+                </div>
+
+                <div class="courses-single-info js-pin-content">
+                  <div class="bg-white shadow-2 rounded-8 border-light py-10 px-10">
+                    <div class="relative">
+                      <img class="w-1/1" src="{{course.picture.url}}" alt="image">
+                      <div class="absolute-full-center d-flex justify-center items-center">
+                        <a href="https://www.aparat.com/video/video/embed/videohash/y5iTg/vt/frame" class="d-flex justify-center items-center size-60 rounded-full bg-white js-gallery" data-gallery="gallery1">
+                          <div class="icon-play text-18"></div>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="courses-single-info__content scroll-bar-1 pt-30 pb-20 px-20">
+                      <div class="d-flex justify-between items-center mb-30">
+                        <div class="text-24 lh-1 text-dark-1 fw-500">{{course.price|intword}} تومان</div>
+                        <!-- <div class="lh-1 line-through">7600 تومان</div> -->
+                      </div>
+
+                      <button class="button -md -purple-1 text-white w-1/1">افزودن به سبد</button>
+                      <button class="button -md -outline-dark-1 text-dark-1 w-1/1 mt-10">خرید مستقیم</button>
+
+                      <div class="text-14 lh-1 text-center mt-30">با ضمانت برگشت 30 روز وجه</div>
+
+                      <div class="mt-25">
+
+                        <div class="d-flex justify-between py-8 ">
+                          <div class="d-flex items-center text-dark-1">
+                            <div class="icon-video-file"></div>
+                            <div class="mr-10">دوره</div>
+                          </div>
+                          <div>20</div>
+                        </div>
+
+                        <div class="d-flex justify-between py-8 border-top-light">
+                          <div class="d-flex items-center text-dark-1">
+                            <div class="icon-puzzle"></div>
+                            <div class="mr-10">امتحانات</div>
+                          </div>
+                          <div>3</div>
+                        </div>
+
+                        <div class="d-flex justify-between py-8 border-top-light">
+                          <div class="d-flex items-center text-dark-1">
+                            <div class="icon-clock-2"></div>
+                            <div class="mr-10">مدت دوره</div>
+                          </div>
+                          <div>{{course.duration}} ساعت</div>
+                        </div>
+
+                        <div class="d-flex justify-between py-8 border-top-light">
+                          <div class="d-flex items-center text-dark-1">
+                            <div class="icon-bar-chart-2"></div>
+                            <div class="mr-10">سطح</div>
+                          </div>
+                          <div>{{course.level}}</div>
+                        </div>
+
+                        <div class="d-flex justify-between py-8 border-top-light">
+                          <div class="d-flex items-center text-dark-1">
+                            <div class="icon-translate"></div>
+                            <div class="mr-10">زبان</div>
+                          </div>
+                          <div>{{course.languages}}</div>
+                        </div>
+
+                        <div class="d-flex justify-between py-8 border-top-light">
+                          <div class="d-flex items-center text-dark-1">
+                            <div class="icon-badge"></div>
+                            <div class="mr-10">مدرک</div>
+                          </div>
+                          <div>دارد</div>
+                        </div>
+
+                        <div class="d-flex justify-between py-8 border-top-light">
+                          <div class="d-flex items-center text-dark-1">
+                            <div class="icon-infinity"></div>
+                            <div class="mr-10">بروزرسانی</div>
+                          </div>
+                          <div>دارد</div>
+                        </div>
+
+                      </div>
+
+                      <div class="d-flex justify-center pt-15">
+
+                        <a href="#" class="d-flex justify-center items-center size-40 rounded-full">
+                          <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="#" class="d-flex justify-center items-center size-40 rounded-full">
+                          <i class="fa fa-twitter"></i>
+                        </a>
+
+                        <a href="#" class="d-flex justify-center items-center size-40 rounded-full">
+                          <i class="fa fa-instagram"></i>
+                        </a>
+
+                        <a href="#" class="d-flex justify-center items-center size-40 rounded-full">
+                          <i class="fa fa-linkedin"></i>
+                        </a>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="layout-pt-md layout-pb-md">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="page-nav-menu -line">
+                  <div class="d-flex x-gap-30">
+                    <div><a href="#overview" class="pb-12 page-nav-menu__link js-scroll-to-id is-active">توضیحات</a></div>
+                    <div><a href="#course-content" class="pb-12 page-nav-menu__link js-scroll-to-id">جلسات دوره</a></div>
+                    <div><a href="#instructors" class="pb-12 page-nav-menu__link js-scroll-to-id">مدرس</a></div>
+                    <div><a href="#reviews" class="pb-12 page-nav-menu__link js-scroll-to-id">دیدگاه</a></div>
+                  </div>
+                </div>
+
+                <div id="overview" class="pt-60 lg:pt-40 to-over">
+                  <h4 class="text-18 fw-500 ff-estedad">توضیحات</h4>
+
+                  <div class="show-more mt-30 js-show-more">
+                    <div class="show-more__content">
+                      <p>{{course.course_description}}</p>
+                    </div>
+
+                    <button class="show-more__button text-purple-1 fw-500 underline mt-30">بیشتر</button>
+                  </div>
+
+                  <div class="mt-60">
+                    <h4 class="text-20 mb-30 ff-estedad">چیزی که یاد خواهید گرفت</h4>
+                    <br/>
+                    <p>{{course.learning|safe}}</p>
+                  </div>
+
+                  <div class="mt-60">
+                    <h4 class="text-20 ff-estedad">پیش نیازها</h4>
+                    <br/>
+                    <p>{{course.requirements|safe}}</p>
+                  </div>
+                </div>
+
+                <div id="course-content" class="pt-60 lg:pt-40">
+                  <h2 class="text-20 fw-500 ff-estedad">جلسات دوره</h2>
+
+                  <div class="d-flex justify-between items-center mt-30">
+                    <div class="">27 دوره • 95 مقاله</div>
+                    <a href="#" class="underline text-purple-1">مشاهده همه دوره ها</a>
+                  </div>
+
+                  <div class="mt-10">
+                    <div class="accordion -block-2 text-left js-accordion">
+
+                      <div class="accordion__item">
+                        <div class="accordion__button py-20 px-30 bg-light-4">
+                          <div class="d-flex items-center">
+                            <div class="accordion__icon">
+                              <div class="icon" data-feather="chevron-down"></div>
+                              <div class="icon" data-feather="chevron-up"></div>
+                            </div>
+                            <span class="text-15 fw-500 text-dark-1">معرفی دوره</span>
+                          </div>
+
+                          <div>5 ویدیو • 87 دقیقه</div>
+                        </div>
+
+                        <div class="accordion__content">
+                          <div class="accordion__content__inner px-30 py-30 text-right">
+                            <div class="y-gap-20">
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>معرفی دوره</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>دیجیتال مارکتینگ</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت اول)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت دوم)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ادیت تصویر مخصوص آتلیه</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ایجاد صفحات فیس بوک</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion__item">
+                        <div class="accordion__button py-20 px-30 bg-light-4">
+                          <div class="d-flex items-center">
+                            <div class="accordion__icon">
+                              <div class="icon" data-feather="chevron-down"></div>
+                              <div class="icon" data-feather="chevron-up"></div>
+                            </div>
+                            <span class="text-15 fw-500 text-dark-1">خلاصه آموزش</span>
+                          </div>
+
+                          <div>5 ویدیو • 87 دقیقه</div>
+                        </div>
+
+                        <div class="accordion__content">
+                          <div class="accordion__content__inner px-30 py-30 text-right">
+                            <div class="y-gap-20">
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>معرفی دوره</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>دیجیتال مارکتینگ</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت اول)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت دوم)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ادیت تصویر مخصوص آتلیه</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ایجاد صفحات فیس بوک</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion__item">
+                        <div class="accordion__button py-20 px-30 bg-light-4">
+                          <div class="d-flex items-center">
+                            <div class="accordion__icon">
+                              <div class="icon" data-feather="chevron-down"></div>
+                              <div class="icon" data-feather="chevron-up"></div>
+                            </div>
+                            <span class="text-15 fw-500 text-dark-1">ذخیره و بازیابی Google</span>
+                          </div>
+
+                          <div>5 ویدیو • 87 دقیقه</div>
+                        </div>
+
+                        <div class="accordion__content">
+                          <div class="accordion__content__inner px-30 py-30 text-right">
+                            <div class="y-gap-20">
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>معرفی دوره</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>دیجیتال مارکتینگ</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت اول)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت دوم)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ادیت تصویر مخصوص آتلیه</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ایجاد صفحات فیس بوک</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion__item">
+                        <div class="accordion__button py-20 px-30 bg-light-4">
+                          <div class="d-flex items-center">
+                            <div class="accordion__icon">
+                              <div class="icon" data-feather="chevron-down"></div>
+                              <div class="icon" data-feather="chevron-up"></div>
+                            </div>
+                            <span class="text-15 fw-500 text-dark-1">نمونه سازی یک برنامه</span>
+                          </div>
+
+                          <div>5 ویدیو • 87 دقیقه</div>
+                        </div>
+
+                        <div class="accordion__content">
+                          <div class="accordion__content__inner px-30 py-30 text-right">
+                            <div class="y-gap-20">
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>معرفی دوره</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>دیجیتال مارکتینگ</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت اول)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت دوم)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ادیت تصویر مخصوص آتلیه</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ایجاد صفحات فیس بوک</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion__item">
+                        <div class="accordion__button py-20 px-30 bg-light-4">
+                          <div class="d-flex items-center">
+                            <div class="accordion__icon">
+                              <div class="icon" data-feather="chevron-down"></div>
+                              <div class="icon" data-feather="chevron-up"></div>
+                            </div>
+                            <span class="text-15 fw-500 text-dark-1">معرفی دوره فتوشاپ</span>
+                          </div>
+
+                          <div>5 ویدیو • 87 دقیقه</div>
+                        </div>
+
+                        <div class="accordion__content">
+                          <div class="accordion__content__inner px-30 py-30 text-right">
+                            <div class="y-gap-20">
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>معرفی دوره</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>دیجیتال مارکتینگ</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت اول)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>توضیح تخصصی ابزار ها(قسمت دوم)</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ادیت تصویر مخصوص آتلیه</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                              <div class="d-flex justify-between">
+                                <div class="d-flex items-center">
+                                  <div class="d-flex justify-center items-center size-30 rounded-full bg-purple-3 ml-10">
+                                    <div class="icon-play text-9"></div>
+                                  </div>
+                                  <div>ایجاد صفحات فیس بوک</div>
+                                </div>
+
+                                <div class="d-flex x-gap-20 items-center">
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">نمایش</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">5</a>
+                                  <a href="#" class="text-14 lh-1 text-purple-1 underline">03:56</a>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div id="instructors" class="pt-60 lg:pt-40">
+                  <h2 class="text-20 fw-500 ff-estedad">مدرس</h2>
+
+                  <div class="mt-30">
+                    <div class="d-flex x-gap-20 y-gap-20 items-center flex-wrap">
+                      <div class="size-120">
+                        <img style="border-radius: 20%" class="object-cover" src="{{course.teacher.picture.url}}" alt="image">
+                      </div>
+
+                      <div class="">
+                        <h5 class="text-17 lh-14 fw-500"> {{course.teacher.full_name}}</h5>
+                        <p class="mt-5">مدرس دانشگاه آزاد</p>
+
+                        <div class="d-flex x-gap-20 y-gap-10 flex-wrap items-center pt-10">
+                          <div class="d-flex items-center">
+                            <div class="d-flex items-center ml-8">
+                              <div class="icon-star text-11 text-yellow-1"></div>
+                              <div class="text-14 lh-12 text-yellow-1 mr-5">4.5</div>
+                            </div>
+                            <div class="text-13 lh-1">امتیاز</div>
+                          </div>
+
+                          <div class="d-flex items-center text-light-1">
+                            <div class="icon-comment text-13 ml-8"></div>
+                            <div class="text-13 lh-1">23,987 دیدگاه</div>
+                          </div>
+
+                          <div class="d-flex items-center text-light-1">
+                            <div class="icon-person-3 text-13 ml-8"></div>
+                            <div class="text-13 lh-1">692 دانشجو</div>
+                          </div>
+
+                          <div class="d-flex items-center text-light-1">
+                            <div class="icon-wall-clock text-13 ml-8"></div>
+                            <div class="text-13 lh-1">15 دوره</div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mt-30">
+                      <p>
+                      {{course.teacher_description|safe}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div id="reviews" class="pt-60 lg:pt-40">
+                  <div class="blogPost -comments">
+                    <div class="blogPost__content">
+                      <h2 class="text-20 fw-500 ff-estedad">دیدگاه هنرجویان</h2>
+                      <div class="row x-gap-10 y-gap-10 pt-30">
+                        <div class="col-md-4">
+                          <div class="d-flex items-center justify-center flex-column py-50 text-center bg-light-6 rounded-8">
+                            <div class="text-60 lh-11 text-dark-1 fw-500">4.8</div>
+                            <div class="d-flex x-gap-5 mt-10">
+                              <div class="icon-star text-11 text-yellow-1"></div>
+                              <div class="icon-star text-11 text-yellow-1"></div>
+                              <div class="icon-star text-11 text-yellow-1"></div>
+                              <div class="icon-star text-11 text-yellow-1"></div>
+                              <div class="icon-star text-11 text-yellow-1"></div>
+                            </div>
+                            <div class="mt-10">امتیاز دوره</div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-8">
+                          <div class="py-20 px-30 bg-light-6 rounded-8">
+                            <div class="row y-gap-15">
+
+                              <div class="col-12">
+                                <div class="d-flex items-center">
+                                  <div class="progress-bar w-1/1 ml-15">
+                                    <div class="progress-bar__bg bg-light-12"></div>
+                                    <div class="progress-bar__bar bg-purple-1 w-1/1"></div>
+                                  </div>
+                                  <div class="d-flex x-gap-5 pl-15">
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                  </div>
+                                  <div class="text-dark-1">70%</div>
+                                </div>
+                              </div>
+
+                              <div class="col-12">
+                                <div class="d-flex items-center">
+                                  <div class="progress-bar w-1/1 ml-15">
+                                    <div class="progress-bar__bg bg-light-12"></div>
+                                    <div class="progress-bar__bar bg-purple-1 w-1/2"></div>
+                                  </div>
+                                  <div class="d-flex x-gap-5 pl-15">
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                  </div>
+                                  <div class="text-dark-1">15%</div>
+                                </div>
+                              </div>
+
+                              <div class="col-12">
+                                <div class="d-flex items-center">
+                                  <div class="progress-bar w-1/1 ml-15">
+                                    <div class="progress-bar__bg bg-light-12"></div>
+                                    <div class="progress-bar__bar bg-purple-1 w-1/3"></div>
+                                  </div>
+                                  <div class="d-flex x-gap-5 pl-15">
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                  </div>
+                                  <div class="text-dark-1">20%</div>
+                                </div>
+                              </div>
+
+                              <div class="col-12">
+                                <div class="d-flex items-center">
+                                  <div class="progress-bar w-1/1 ml-15">
+                                    <div class="progress-bar__bg bg-light-12"></div>
+                                    <div class="progress-bar__bar bg-purple-1 w-1/5"></div>
+                                  </div>
+                                  <div class="d-flex x-gap-5 pl-15">
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                  </div>
+                                  <div class="text-dark-1">3%</div>
+                                </div>
+                              </div>
+
+                              <div class="col-12">
+                                <div class="d-flex items-center">
+                                  <div class="progress-bar w-1/1 ml-15">
+                                    <div class="progress-bar__bg bg-light-12"></div>
+                                    <div class="progress-bar__bar bg-purple-1 w-1/7"></div>
+                                  </div>
+                                  <div class="d-flex x-gap-5 pl-15">
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                    <div class="icon-star text-11 text-yellow-1"></div>
+                                  </div>
+                                  <div class="text-dark-1">2%</div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h2 class="text-20 fw-500 mt-60 lg:mt-40 ff-estedad">دیدگاه کاربران</h2>
+                      <ul class="comments__list mt-30">
+                        {% for i in course.course_comments.all  %}
+                        <li class="comments__item">
+                          <div class="comments__item-inner md:direction-column">
+                            <div class="comments__img ml-20">
+                              <div class="bg-image rounded-full js-lazy" data-bg="img/avatars/1.png"></div>
+                            </div>
+
+                            <div class="comments__body md:mt-15">
+                              <div class="comments__header">
+                                <h4 class="text-17 fw-500 lh-15">
+                                  {{i.person.full_name}}
+                                  <span class="text-13 text-light-1 fw-400">3 روز قبل</span>
+                                </h4>
+
+                                <div class="stars"></div>
+                              </div>
+
+                              <h5 class="text-15 fw-500 mt-15"> {{i.title}}  </h5>
+                              <div class="comments__text mt-10">
+                                <p>
+                                {{i.text}}
+                                </p>
+                              </div>
+
+                              <div class="comments__helpful mt-20">
+                                <span class="text-13 text-purple-1">آیا این دیدگاه مفید بود؟</span>
+                                <button class="button text-13 -sm -purple-1 text-white">بله</button>
+                                <button class="button text-13 -sm -light-7 text-purple-1">خیر</button>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        {% endfor %}
+
+
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="respondForm pt-60">
+                    <h3 class="text-20 fw-500 ff-estedad">
+                      ثبت دیدگاه
+                    </h3>
+
+                    <div class="mt-30">
+                      <h4 class="text-16 fw-500">آیا این دوره را دوست داشتید؟</h4>
+                      <div class="d-flex x-gap-10 pt-10">
+                        <div class="icon-star text-14 text-yellow-1"></div>
+                        <div class="icon-star text-14 text-yellow-1"></div>
+                        <div class="icon-star text-14 text-yellow-1"></div>
+                        <div class="icon-star text-14 text-yellow-1"></div>
+                        <div class="icon-star text-14 text-yellow-1"></div>
+                      </div>
+                    </div>
+
+                    <form  method="POST" class="contact-form respondForm__form row y-gap-30 pt-30" action="#">
+                      {% csrf_token %}
+                      <div class="col-12">
+                        <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">عنوان</label>
+                        <input type="text" name="title" placeholder="دوره عالی">
+                      </div>
+                      <div class="col-12">
+                        <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">متن دیدگاه</label>
+                        <textarea name="text" placeholder="نظر خود را بنویسید..." rows="8"></textarea>
+                      </div>
+                      <div class="col-12">
+                        <button type="submit" name="submit" id="submit" class="button -md -purple-1 text-white">
+                          ثبت دیدگاه
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+
+      <section class="layout-pt-md layout-pb-lg">
+        <div data-anim-wrap class="container">
+          <div class="row">
+            <div class="col-auto">
+
+              <div class="sectionTitle ">
+
+                <h2 class="sectionTitle__title ">دوره های مشابه</h2>
+
+                <p class="sectionTitle__text ">بیش از 10000 طرح منحصر به فرد در لیست دوره های آنلاین</p>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="relative pt-60 lg:pt-50">
+            <div class="overflow-hidden js-section-slider" data-gap="30" data-loop data-pagination data-nav-prev="js-courses-prev" data-nav-next="js-courses-next" data-slider-cols="xl-4 lg-3 md-2">
+              <div class="swiper-wrapper">
+
+                {% for i in like_course %}
+                <div data-anim-child="slide-up delay-1" class="swiper-slide">
+
+                  <a href="{{i.get_absolute_url}}" class="coursesCard -type-1 ">
+                          <div class="relative">
+                            <div class="coursesCard__image overflow-hidden rounded-8">
+                              <img class="w-1/1" src="{{i.picture.url}}" alt="image">
+                              <div class="coursesCard__image_overlay rounded-8"></div>
+                            </div>
+                            <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
+
+                            </div>
+                          </div>
+
+                          <div class="h-100 pt-15">
+                            <div class="d-flex items-center">
+                              <div class="text-14 lh-1 text-yellow-1 ml-10">4.5</div>
+                              <div class="d-flex x-gap-5 items-center">
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                              </div>
+                              <div class="text-13 lh-1 mr-10">(1991)</div>
+                            </div>
+
+                            <div class="text-17 lh-15 fw-500 text-dark-1 mt-10"> {{i.course_name}}</div>
+
+                            <div class="d-flex x-gap-10 items-center pt-10">
+
+                              <div class="d-flex items-center">
+                                <div class="ml-8">
+                                  <img src="{% static 'front/img/coursesCards/icons/1.svg' %}" alt="icon">
+                                </div>
+                                <div class="text-14 lh-1">6 دوره</div>
+                              </div>
+
+                              <div class="d-flex items-center">
+                                <div class="ml-8">
+                                  <img src="{% static 'front/img/coursesCards/icons/2.svg' %}" alt="icon">
+                                </div>
+                                <div class="text-14 lh-1">28دقیقه</div>
+                              </div>
+
+                              <div class="d-flex items-center">
+                                <div class="ml-8">
+                                  <img src="{% static 'front/img/coursesCards/icons/3.svg' %}" alt="icon">
+                                </div>
+                                <div class="text-14 lh-1">مقدماتی</div>
+                              </div>
+
+                            </div>
+
+                            <div class="coursesCard-footer">
+                              <div class="coursesCard-footer__author">
+                                <img src="{{i.teacher.picture.url}}" alt="image">
+                                <div>علی صالحی</div>
+                              </div>
+
+                              <div class="coursesCard-footer__price">
+                                <div>179</div>
+                                <div>{{i.price}} تومان</div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+
+                </div>
+                {% endfor %}
+
+
+
+
+
+
+
+              </div>
+            </div>
+
+
+            <button class="section-slider-nav -prev -dark-bg-dark-2 -white -absolute size-70 rounded-full shadow-5 js-courses-prev">
+              <i class="icon icon-arrow-left text-24"></i>
+            </button>
+
+            <button class="section-slider-nav -next -dark-bg-dark-2 -white -absolute size-70 rounded-full shadow-5 js-courses-next">
+              <i class="icon icon-arrow-right text-24"></i>
+            </button>
+
+          </div>
+        </div>
+      </section>
+
+      {% block footer %}
+
+      {% include 'footer.html' %}
+      {% endblock %}
+
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="{% static 'front/vendor/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'front/js/vendors.js' %}"></script>
+  <script src="{% static 'front/js/main.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/courses-single-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:30:52 GMT -->
+</html>

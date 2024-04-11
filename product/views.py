@@ -1,0 +1,48 @@
+from django.shortcuts import render
+from .models import Product_Product , Category_Product , Tag_Product
+from django.views import View
+# Create your views here.
+
+
+
+class Total_Product(View):
+
+    template_name = 'product/shop-list.html'
+
+    def setup(self, request, *args, **kwargs):
+        self.total_product  = Product_Product.objects.all()
+        self.total_category = Category_Product.objects.all()
+        return super().setup(request , *args , **kwargs )
+
+
+
+
+    def get(self, request):
+
+        content = {'total_product' : self.total_product , 'total_category' : self.total_category }
+        return render(request , self.template_name , content )
+
+
+    def post(self, request):
+        content = {'total_product' : self.total_product , 'total_category' : self.total_category }
+        return render(request , self.template_name , content )
+
+
+
+class Detail_Product(View) :
+
+    template_name = 'product/shop-single.html'
+
+    def setup(self, request, *args, **kwargs):
+        self.product = Product_Product.objects.get(id=kwargs['id'])
+        self.like_products = Product_Product.objects.filter(category = self.product.category and id != self.product.id )[:4]
+        return super().setup(request , *args , **kwargs )
+
+
+    def get(self , request , id ):
+        content = {'product': self.product , 'like_products': self.like_products }
+        return render(request , self.template_name , content )
+
+    def post(self , request , id ):
+        content = {'product': self.product , 'like_products': self.like_products }
+        return render(request , self.template_name , content )

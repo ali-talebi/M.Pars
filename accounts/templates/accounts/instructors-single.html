@@ -1,0 +1,437 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/instructors-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:31:41 GMT -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'front/css/base.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/choices.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/all.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/vendor/leaflet/leaflet.css' %}"/>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{% static 'front/css/vendors.css' %}">
+  <link rel="stylesheet" href="{% static 'front/css/main.css' %}">
+
+  <title>    معرفی اعضا    </title>
+</head>
+
+<body class="preloader-visible" data-barba="wrapper">
+  <!-- preloader start -->
+  <div class="preloader js-preloader">
+    <div class="preloader__bg"></div>
+  </div>
+  <!-- preloader end -->
+
+
+  <main class="main-content">
+
+    {% block header %}
+    {% include 'menu.html' %}
+    {% endblock header %}
+
+    <div class="content-wrapper  js-content-wrapper">
+
+
+      <section data-anim="fade" class="breadcrumbs ">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="breadcrumbs__content">
+
+                <div class="breadcrumbs__item ">
+                  <a href="{% url 'home:home' %}">صفحه اصلی</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#"> اعضا</a>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="page-header -type-3">
+        <div class="page-header__bg bg-purple-1"></div>
+        <div class="container">
+          <div class="row justify-center">
+            <div class="col-xl-8 col-lg-9 col-md-11">
+              <div class="page-header__content">
+                <div class="page-header__img">
+                  <img style="100px;height: 100px;border-radius: 20%" src="{{team_member_profile.team_member.picture.url}}" alt="image">
+                </div>
+
+                <div class="page-header__info pt-20">
+                  <h1 class="text-30 lh-14 fw-700 text-white"> {{team_member_profile.team_member.full_name}} </h1>
+                  <div class="text-white">{{team_member_profile.introduce}}</div>
+                  <div class="d-flex x-gap-20 pt-15">
+
+                    <div class="d-flex items-center text-white">
+                      <div class="icon-star ml-10"></div>
+                      <div class="text-13 lh-1">امتیاز</div>
+                    </div>
+
+                    <div class="d-flex items-center text-white">
+                      <div class="icon-video-file ml-10"></div>
+                      <div class="text-13 lh-1">23,987 دیدگاه</div>
+                    </div>
+
+                    <div class="d-flex items-center text-white">
+                      <div class="icon-person-3 ml-10"></div>
+                      <div class="text-13 lh-1">692 دانشجو</div>
+                    </div>
+
+                    <div class="d-flex items-center text-white">
+                      <div class="icon-play ml-10"></div>
+                      <div class="text-13 lh-1">15 دوره</div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="d-flex items-center mt-30">
+                  <button class="button -md -green-1 text-dark-1">ارسال پیام</button>
+
+                  <div class="d-flex items-center x-gap-15 text-white mr-25">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="layout-pt-md layout-pb-lg">
+        <div class="container">
+          <div class="row justify-center">
+            <div class="col-xl-8 col-lg-9 col-md-11">
+              <div class="tabs -active-purple-2 js-tabs">
+                <div class="tabs__controls d-flex js-tabs-controls">
+                  <button class="tabs__button js-tabs-button is-active" data-tab-target=".-tab-item-1" type="button">
+                    توضیحات
+                  </button>
+                  <button class="tabs__button js-tabs-button mr-30" data-tab-target=".-tab-item-2" type="button">
+                    دوره ها
+                  </button>
+                </div>
+
+                <div class="tabs__content pt-60 lg:pt-40 js-tabs-content">
+                  <div class="tabs__pane -tab-item-1 is-active">
+                    <h4 class="text-20">توضیحات</h4>
+                    <p class="text-light-1 mt-30">
+                      {{team_member_profile.description}}
+                    </p>
+                    <button class="button underline text-purple-1 mt-30">مشاهده بیشتر</button>
+                  </div>
+
+                  <div class="tabs__pane -tab-item-2">
+                    <div class="row">
+
+                      <div data-anim="slide-up delay-1" class="col-md-6">
+
+                        <a href="#" class="coursesCard -type-1 rounded-8 shadow-3 bg-white">
+                          <div class="relative">
+                            <div class="coursesCard__image overflow-hidden rounded-top-8">
+                              <img class="w-1/1" src="{% static 'img/coursesCards/1.png' %}" alt="image">
+                              <div class="coursesCard__image_overlay rounded-top-8"></div>
+                            </div>
+                            <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
+
+                            </div>
+                          </div>
+
+                          <div class="h-100 pt-20 pb-15 px-30">
+                            <div class="d-flex items-center">
+                              <div class="text-14 lh-1 text-yellow-1 ml-10">4.5</div>
+                              <div class="d-flex x-gap-5 items-center">
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                              </div>
+                              <div class="text-13 lh-1 mr-10">(1991)</div>
+                            </div>
+
+                            <div class="text-17 lh-15 fw-500 text-dark-1 mt-10">آموزش NodeJs</div>
+
+                            <div class="d-flex x-gap-10 items-center pt-10">
+
+                              <div class="d-flex items-center">
+                                <div class="ml-8">
+                                  <img src="img/coursesCards/icons/1.svg" alt="icon">
+                                </div>
+                                <div class="text-14 lh-1">6 دوره</div>
+                              </div>
+
+                              <div class="d-flex items-center">
+                                <div class="ml-8">
+                                  <img src="img/coursesCards/icons/2.svg" alt="icon">
+                                </div>
+                                <div class="text-14 lh-1">8ساعت 20دقیقه</div>
+                              </div>
+
+                              <div class="d-flex items-center">
+                                <div class="ml-8">
+                                  <img src="img/coursesCards/icons/3.svg" alt="icon">
+                                </div>
+                                <div class="text-14 lh-1">مقدماتی</div>
+                              </div>
+
+                            </div>
+
+                            <div class="coursesCard-footer">
+                              <div class="coursesCard-footer__author">
+                                <img src="img/general/avatar-1.png" alt="image">
+                                <div>علی صالحی</div>
+                              </div>
+
+                              <div class="coursesCard-footer__price">
+                                <div>179</div>
+                                <div>79000 تومان</div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+
+                      </div>
+
+                      <div data-anim="slide-up delay-2" class="col-md-6">
+
+                        <a href="courses-single-1.html" class="coursesCard -type-1 rounded-8 shadow-3 bg-white">
+                          <div class="relative">
+                            <div class="coursesCard__image overflow-hidden rounded-top-8">
+                              <img class="w-1/1" src="img/coursesCards/2.png" alt="image">
+                              <div class="coursesCard__image_overlay rounded-top-8"></div>
+                            </div>
+                            <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
+
+                              <div>
+                                <div class="px-15 rounded-200 bg-purple-1">
+                                  <span class="text-11 lh-1 uppercase fw-500 text-white">ویژه</span>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div class="px-15 rounded-200 bg-green-1">
+                                  <span class="text-11 lh-1 uppercase fw-500 text-dark-1">پرفروش</span>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="h-100 pt-20 pb-15 px-30">
+                            <div class="d-flex items-center">
+                              <div class="text-14 lh-1 text-yellow-1 ml-10">4.5</div>
+                              <div class="d-flex x-gap-5 items-center">
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                                <div class="icon-star text-9 text-yellow-1"></div>
+                              </div>
+                              <div class="text-13 lh-1 mr-10">(1991)</div>
+                            </div>
+
+                            <div class="text-17 lh-15 fw-500 text-dark-1 mt-10">آموزش Angular</div>
+
+                            <div class="d-flex x-gap-10 items-center pt-10">
+
+                              <div class="d-flex items-center">
+                                <div class="ml-8">
+                                  <img src="img/coursesCards/icons/1.svg" alt="icon">
+                                </div>
+                                <div class="text-14 lh-1">6 دوره</div>
+                              </div>
+
+                              <div class="d-flex items-center">
+                                <div class="ml-8">
+                                  <img src="img/coursesCards/icons/2.svg" alt="icon">
+                                </div>
+                                <div class="text-14 lh-1">8ساعت 20دقیقه</div>
+                              </div>
+
+                              <div class="d-flex items-center">
+                                <div class="ml-8">
+                                  <img src="img/coursesCards/icons/3.svg" alt="icon">
+                                </div>
+                                <div class="text-14 lh-1">مقدماتی</div>
+                              </div>
+
+                            </div>
+
+                            <div class="coursesCard-footer">
+                              <div class="coursesCard-footer__author">
+                                <img src="img/general/avatar-1.png" alt="image">
+                                <div>علی صالحی</div>
+                              </div>
+
+                              <div class="coursesCard-footer__price">
+                                <div>179</div>
+                                <div>79000 تومان</div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <footer class="footer -type-1 bg-dark-1 -green-links">
+        <div class="container">
+          <div class="footer-header">
+            <div class="row y-gap-20 justify-between items-center">
+              <div class="col-auto">
+                <div class="footer-header__logo">
+                  <img src="img/footer/footer-logo.svg" alt="logo">
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="footer-header-socials">
+                  <div class="footer-header-socials__title text-white">ما را در شبکه های اجتماعی دنبال کنید</div>
+                  <div class="footer-header-socials__list">
+                    <a href="#"><i class="icon-facebook"></i></a>
+                    <a href="#"><i class="icon-twitter"></i></a>
+                    <a href="#"><i class="icon-instagram"></i></a>
+                    <a href="#"><i class="icon-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-columns">
+            <div class="row y-gap-30">
+              <div class="col-xl-2 col-lg-4 col-md-6">
+                <div class="text-17 fw-500 text-white uppercase mb-25">درباره ما</div>
+                <div class="d-flex y-gap-10 flex-column">
+                  <a href="about-1.html">درباره ما</a>
+                  <a href="blog-list-1.html">لیست وبلاگ</a>
+                  <a href="instructor-become.html">مدرس شوید</a>
+                  <a href="blog-list-1.html">لیست وبلاگ</a>
+                  <a href="#">بازگشت وجه</a>
+                  <a href="contact-1.html">تماس با ما</a>
+                </div>
+              </div>
+
+              <div class="col-xl-4 col-lg-8">
+                <div class="text-17 fw-500 text-white uppercase mb-25">دسته بندی ها</div>
+                <div class="row justify-between y-gap-20">
+                  <div class="col-md-6">
+                    <div class="d-flex y-gap-10 flex-column">
+                      <a href="courses-single-1.html">برنامه نویسی</a>
+                      <a href="courses-single-2.html">طراحی وب</a>
+                      <a href="courses-single-3.html">مالی و حسابداری</a>
+                      <a href="courses-single-4.html">فناوری اطلاعات</a>
+                      <a href="courses-single-5.html">هوش مصنوعی</a>
+                      <a href="courses-single-6.html">رباتیک</a>
+                      <a href="courses-single-1.html">بازاریابی</a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="d-flex y-gap-10 flex-column">
+                      <a href="courses-single-1.html">مدیریت پروژه</a>
+                      <a href="courses-single-2.html">طراحی گرافیک</a>
+                      <a href="courses-single-3.html">نرم افزار</a>
+                      <a href="courses-single-4.html">عکاسی</a>
+                      <a href="courses-single-5.html">بانک های اطلاعاتی</a>
+                      <a href="courses-single-6.html">بهینه سازی وب</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 offset-xl-1 col-lg-4 col-md-6">
+                <div class="text-17 fw-500 text-white uppercase mb-25">پشتیبانی</div>
+                <div class="d-flex y-gap-10 flex-column">
+                  <a href="terms.html">المان های کاربردی</a>
+                  <a href="help-center.html">سوالات متداول</a>
+                  <a href="dashboard.html">داشبورد</a>
+                  <a href="contact-1.html">تماس با ما</a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="text-17 fw-500 text-white uppercase mb-25">در تماس باشید</div>
+                <div class="footer-columns-form">
+                  <div>ما اسپم نمی فرستیم پس نگران نباشید.</div>
+                  <form action="#">
+                    <div class="form-group">
+                      <input type="text" placeholder="ایمیل شما...">
+                      <button type="submit">ارسال</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="py-30 border-top-light-15">
+            <div class="row justify-between items-center y-gap-20">
+              <div class="col-auto">
+                <div class="d-flex items-center h-100 text-white">
+                  © 2022 کلیه حقوق این قالب متعلق به گروه توسعه پردازان می باشد.
+                </div>
+              </div>
+
+              <div class="col-auto">
+                <div class="d-flex x-gap-20 y-gap-20 items-center flex-wrap">
+                  <div>
+                    <div class="d-flex x-gap-15 text-white">
+                      <a href="help-center.html">پشتیبانی</a>
+                      <a href="terms.html">شرایط</a>
+                      <a href="terms.html">امنیت</a>
+                      <a href="terms.html">حریم خصوصی</a>
+                      <a href="terms.html">ضوابط</a>
+                    </div>
+                  </div>
+
+                  <div>
+                    <a href="#" class="button px-30 h-50 -dark-6 rounded-200 text-white">
+                      <i class="icon-worldwide text-20 ml-15"></i><span class="text-15">فارسی</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="{% static 'front/vendor/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'front/js/vendors.js' %}"></script>
+  <script src="{% static 'front/js/main.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/instructors-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:31:41 GMT -->
+</html>

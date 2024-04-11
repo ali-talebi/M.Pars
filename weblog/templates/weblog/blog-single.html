@@ -1,0 +1,395 @@
+{% load static %}
+{% load jformat %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:31:58 GMT -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'front/css/base.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/choices.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/all.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/vendor/leaflet/leaflet.css' %}"/>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{% static 'front/css/vendors.css' %}">
+  <link rel="stylesheet" href="{% static 'front/css/main.css' %}">
+
+  <title>Educrat - قالب HTML دوره آنلاین و آموزش اِدُکرات</title>
+</head>
+
+<body class="preloader-visible" data-barba="wrapper">
+  <!-- preloader start -->
+  <div class="preloader js-preloader">
+    <div class="preloader__bg"></div>
+  </div>
+  <!-- preloader end -->
+
+
+  <main class="main-content">
+
+    {% block header %}
+    {% include 'menu.html' %}
+    {% endblock header %}
+
+    <div class="content-wrapper  js-content-wrapper">
+
+
+      <section data-anim="fade" class="breadcrumbs ">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="breadcrumbs__content">
+
+                <div class="breadcrumbs__item ">
+                  <a href="{% url 'home:home' %}">صفحه اصلی</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="{% url 'weblog:Total_Post' %}">لیست وبلاگ</a>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {% block messages %}
+      {% include 'messages.html' %}
+      {% endblock messages %}
+
+      <section class="page-header -type-1">
+        <div class="container">
+          <div class="page-header__content">
+            <div class="row justify-center text-center">
+              <div class="col-auto">
+                <div data-anim="slide-up delay-1">
+                  <div class="text-14 text-purple-1 uppercase fw-500 mb-8"> {{post.category}} </div>
+
+
+                  <h1 class="page-header__title lh-14">{{post.post_name}}</h1>
+
+
+                  <p class="page-header__text"> {{post.creation|jformat:"%d/ %m/ %Y " }} </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="layout-pt-md">
+        <div class="container">
+          <div class="ratio ratio-16:9 rounded-8 bg-image js-lazy" data-bg="{{post.picture.url}}"></div>
+        </div>
+      </section>
+
+      <section class="layout-pt-md layout-pb-lg">
+        <div class="container">
+          <div class="blogSection">
+            <div class="blogCard">
+              <div class="row justify-center">
+                <div class="col-xl-8 col-lg-9 col-md-11">
+                  <div class="blogCard__content">
+
+                    <p>
+                      {{post.text|safe}}
+                    </p>
+                    <!-- <div class="py-25 pl-90 lg:pl-80 md:px-32 border-left-2-accent text-center mt-30 lg:mt-40">
+                  <div class="">
+                    <i class="icon icon-quote"></i>
+                  </div>
+
+                  <div class="text-dark-1 fw-500 italic text-2xl lh-17">
+                    “Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida. Diam phasellus vestibulum lorem sed risus ultricies. Magna sit amet purus gravida quis blandit. Arcu cursus vitae congue mauris.“
+                  </div>
+                </div> -->
+
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row justify-center pt-30">
+              <div class="col-xl-8 col-lg-9 col-md-11">
+                <div class="row y-gap-20 justify-between items-center">
+                  <div class="col-auto">
+                    <div class="d-flex items-center">
+                      <div class="lh-1 text-dark-1 fw-500 ml-30">اشتراک گذاری</div>
+
+                      <div class="d-flex x-gap-15">
+                        <a href="#">فیسبوک</a>
+                        <a href="#">توییتر</a>
+                        <a href="#">اینستاگرام</a>
+                        <a href="#">لینکدین</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-auto">
+                    <div class="row x-gap-10 y-gap-10">
+
+                      {% for i in post.tags.all  %}
+                      <div class="col-auto">
+                        <a href="#" class="badge -sm -light-3 text-11 text-dark-1"> {{i.tag_name}} </a>
+                      </div>
+                      {% endfor %}
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row justify-center pt-30">
+              <div class="col-xl-8 col-lg-9 col-md-11">
+                <div class="d-flex border-bottom-light border-top-light py-30">
+                  <div class="">
+                    {% if post.author.picture %}
+                    <div class="bg-image size-70 rounded-full js-lazy" data-bg="{{post.auther.picture.url}}"></div>
+                    {% else  %}
+                    <div class="bg-image size-70 rounded-full js-lazy" data-bg="{% static 'front/img/blog/blog-single/author.png' %}"></div>
+
+                    {% endif %}
+                  </div>
+
+                  <div class="mr-30 md:mr-20">
+                    <h4 class="text-15 lh-15 fw-500">{{post.author}}</h4>
+                    <div class="mt-5">نویسنده</div>
+                    <p class="mt-25">چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row justify-center">
+              <div class="col-xl-8 col-lg-9 col-md-11">
+                <div class="border-bottom-light py-30">
+                  <div class="row x-gap-50 justify-between items-center">
+                    {% if pervious %}
+                    <div class="col-md-4 col-6">
+                      <a href="{{pervious.get_absolute_url}}" class="related-nav__item -prev decoration-none">
+                        <div class="related-nav__arrow">
+                          <i class="icon size-20 pt-5" data-feather="arrow-right"></i>
+                        </div>
+                        <div class="related-nav__content">
+                          <div class="text-17 text-dark-1 fw-500"> پست قبلی </div>
+                          <p class="text-dark-1 mt-8">  {{pervious.post_name}}  </p>
+                        </div>
+                      </a>
+                    </div>
+                    {% endif %}
+
+                    <div class="col-auto lg:d-none">
+                      <div class="related-nav__icon row">
+
+                        <div class="col-4">
+                          <span></span>
+                        </div>
+
+                        <div class="col-4">
+                          <span></span>
+                        </div>
+
+                        <div class="col-4">
+                          <span></span>
+                        </div>
+
+                        <div class="col-4">
+                          <span></span>
+                        </div>
+
+                        <div class="col-4">
+                          <span></span>
+                        </div>
+
+                        <div class="col-4">
+                          <span></span>
+                        </div>
+
+                        <div class="col-4">
+                          <span></span>
+                        </div>
+
+                        <div class="col-4">
+                          <span></span>
+                        </div>
+
+                        <div class="col-4">
+                          <span></span>
+                        </div>
+
+                      </div>
+                    </div>
+                    {% if next %}
+                    <div class="col-md-4 col-6 d-flex justify-end">
+                      <a href="{{next.get_absolute_url}}" class="related-nav__item -next text-right decoration-none">
+                        <div class="related-nav__content">
+                          <div class="text-17 text-dark-1 fw-500">پست بعدی</div>
+                          <p class="text-dark-1 mt-8">{{next.post_name}}</p>
+                        </div>
+                        <div class="related-nav__arrow">
+                          <i class="icon size-20 pt-5" data-feather="arrow-left"></i>
+                        </div>
+                      </a>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row justify-center pt-30">
+              <div class="col-xl-8 col-lg-9 col-md-11">
+                <div class="blogPost -comments">
+                  <div class="blogPost__content">
+                    <h2 class="text-20 fw-500">
+                      دیدگاه کاربران
+                    </h2>
+
+                    <ul class="comments__list mt-30">
+                      {% for comment in total_comment %}
+                      <li class="comments__item">
+                        <div class="comments__item-inner md:direction-column">
+                          <div class="comments__img ml-20">
+                            <div class="bg-image rounded-full js-lazy" data-bg="{% static 'front/img/avatars/1.png' %}"></div>
+                          </div>
+
+                          <div class="comments__body md:mt-15">
+                            <div class="comments__header">
+                              <h4 class="text-17 fw-500 lh-15">
+                                {{comment}}
+                                <span class="text-13 text-light-1 fw-400">3 روز قبل</span>
+                              </h4>
+
+                              <div class="stars"></div>
+                            </div>
+
+                            <h5 class="text-15 fw-500 mt-15">{{comment.title}}</h5>
+                            <div class="comments__text mt-10">
+                              <p>
+                                {{comment.text}}
+                              </p>
+                            </div>
+
+                            <div class="comments__helpful mt-20">
+                              <span class="text-13 text-purple-1">آیا این دیدگاه مفید بود؟</span>
+                              <button class="button text-13 -sm -purple-1 text-white">بله</button>
+                              <button class="button text-13 -sm -light-7 text-purple-1">خیر</button>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      {% endfor %}
+
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="respondForm pt-30">
+                  <h3 class="text-20 fw-500">
+                    ثبت دیدگاه
+                  </h3>
+
+                  <div class="mt-30">
+                    <h4 class="text-16 fw-500">آیا این وبلاگ را دوست داشتید؟</h4>
+                    <div class="d-flex x-gap-10 pt-10">
+                      <div class="icon-star text-14 text-yellow-1"></div>
+                      <div class="icon-star text-14 text-yellow-1"></div>
+                      <div class="icon-star text-14 text-yellow-1"></div>
+                      <div class="icon-star text-14 text-yellow-1"></div>
+                      <div class="icon-star text-14 text-yellow-1"></div>
+                    </div>
+                  </div>
+
+                  <form method="POST" action="" class="contact-form respondForm__form row y-gap-30 pt-30" action="#">
+                    {% csrf_token %}
+                    <div class="col-12">
+                      <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">عنوان</label>
+                      <input type="text" name="title" placeholder="وبلاگ عالی">
+                    </div>
+                    <div class="col-12">
+                      <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">متن دیدگاه</label>
+                      <textarea name="text" placeholder="نظر خود را بنویسید..." rows="8"></textarea>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" name="submit" id="submit" class="button -md -purple-1 text-white">
+                        ثبت
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout-pt-lg layout-pb-lg bg-light-4">
+        <div data-anim-wrap class="container">
+          <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
+            <div class="col-auto">
+
+              <div class="sectionTitle ">
+
+                <h2 class="sectionTitle__title ">وبلاگ مشابه</h2>
+
+                <p class="sectionTitle__text ">پست های مشابه را میتوانید از قسمت زیر دسترسی داشته باشید</p>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row y-gap-30 pt-60">
+
+            {% for i in four_same_posts %}
+            <div class="col-lg-3 col-md-6">
+              <div data-anim-child="slide-up delay-2" class="blogCard -type-1">
+                <div class="blogCard__image">
+                  <img style="border-radius: 20px" width="50px" height="50px" src="{{i.picture.url}}" alt="image">
+                </div>
+                <div class="blogCard__content mt-20">
+                  <a href="{{i.get_absolute_url}}" class="blogCard__category">{{i.category.category_name}}</a>
+                  <h4 class="blogCard__title text-17 lh-15 mt-5">{{i.post_name}}</h4>
+                  <div class="blogCard__date text-14 mt-5">{{i.creation|jformat:"%d/ %m/ %Y "}}</div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+
+
+          </div>
+        </div>
+      </section>
+
+      {% block footer %}
+      {% include 'footer.html' %}
+      {% endblock footer %}
+
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="{% static 'front/vendor/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'front/js/vendors.js' %}"></script>
+  <script src="{% static 'front/js/main.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:31:59 GMT -->
+</html>

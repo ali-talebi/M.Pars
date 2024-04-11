@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:30:54 GMT -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'front/css/base.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/choices.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/all.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/vendor/leaflet/leaflet.css' %}"/>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{% static 'front/css/vendors.css' %}">
+  <link rel="stylesheet" href="{% static 'front/css/main.css' %}">
+
+  <title> ثبت نام </title>
+</head>
+
+<body class="preloader-visible" data-barba="wrapper">
+  <!-- preloader start -->
+  <div class="preloader js-preloader">
+    <div class="preloader__bg"></div>
+  </div>
+  <!-- preloader end -->
+
+
+  <main class="main-content bg-beige-1">
+
+    <header data-anim="fade" data-add-bg="" class="header -base js-header">
+
+
+      <div class="header__container py-10">
+        <div class="row justify-between items-center">
+
+          <div class="col-auto">
+            <div class="header-left">
+
+              <div class="header__logo ">
+                <a data-barba href="index.html">
+                  <img src="img/general/logo.svg" alt="logo">
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          {% block menu %}
+          {% include 'menu.html' %}
+          {% endblock menu %}
+        </div>
+      </div>
+    </header>
+
+
+    <div class="content-wrapper  js-content-wrapper">
+
+      <section class="form-page">
+        <div class="form-page__img bg-dark-1">
+          <div class="form-page-composition">
+            <div class="-bg"><img data-move="30" class="js-mouse-move" src="img/login/bg.png" alt="bg"></div>
+            <div class="-el-1"><img data-move="20" class="js-mouse-move" src="img/home-9/hero/bg.png" alt="image"></div>
+            <div class="-el-2"><img data-move="40" class="js-mouse-move" src="img/home-9/hero/1.png" alt="icon"></div>
+            <div class="-el-3"><img data-move="40" class="js-mouse-move" src="img/home-9/hero/2.png" alt="icon"></div>
+            <div class="-el-4"><img data-move="40" class="js-mouse-move" src="img/home-9/hero/3.png" alt="icon"></div>
+          </div>
+        </div>
+
+        <div class="form-page__content lg:py-50">
+          <div class="container">
+            <div class="row justify-center items-center">
+              <div class="col-xl-8 col-lg-9">
+                <div class="px-50 py-50 md:px-25 md:py-25 bg-white shadow-1 rounded-16">
+                  <h3 class="text-30 lh-13">ثبت نام</h3>
+                  <p class="mt-10">آیا قبلا ثبت نام کرده اید؟ <a href="login.html" class="text-purple-1">ورود</a></p>
+
+                  <form method="POST" class="contact-form respondForm__form row y-gap-20 pt-30" action="#">
+                    {% csrf_token %}
+                    <div class="col-lg-6">
+                      <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">ایمیل *</label>
+                      <input type="text" name="email" placeholder="ایمیل">
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="text-16 lh-1 fw-500 text-dark-1 mb-10"> شماره تلفن </label>
+                      <input type="text" name="phone" placeholder="09121111111">
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">رمز عبور *</label>
+                      <input type="text" name="password" placeholder="رمز عبور">
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">  نام و نام خانوادگی</label>
+                      <input type="text" name="full_name" placeholder="نام و نام خانوادگی">
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" name="submit" id="submit" class="button -md -green-1 text-dark-1 fw-500 w-1/1">
+                        ثبت نام
+                      </button>
+                    </div>
+                  </form>
+
+                  <div class="lh-12 text-dark-1 fw-500 text-center mt-20">یـا ورود با حساب</div>
+
+                  <div class="d-flex x-gap-20 items-center justify-between pt-20">
+                    <div><button class="button -sm px-24 py-20 -outline-blue-3 text-blue-3 text-14">Facebook</button></div>
+                    <div><button class="button -sm px-24 py-20 -outline-red-3 text-red-3 text-14">Google</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    </div>
+  </main>
+
+    <!-- JavaScript -->
+  <script src="{% static 'front/vendor/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'front/js/vendors.js' %}"></script>
+  <script src="{% static 'front/js/main.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:30:54 GMT -->
+</html>

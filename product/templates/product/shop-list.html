@@ -1,0 +1,302 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/shop-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:32:02 GMT -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'front/css/base.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/choices.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/all.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/vendor/leaflet/leaflet.css' %}"/>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{% static 'front/css/vendors.css' %}">
+  <link rel="stylesheet" href="{% static 'front/css/main.css' %}">
+
+  <title>Educrat - قالب HTML دوره آنلاین و آموزش اِدُکرات</title>
+</head>
+
+<body class="preloader-visible" data-barba="wrapper">
+  <!-- preloader start -->
+  <div class="preloader js-preloader">
+    <div class="preloader__bg"></div>
+  </div>
+  <!-- preloader end -->
+
+
+  <main class="main-content">
+
+    {% block header %}
+    {% include 'menu.html' %}
+    {% endblock header %}
+
+    <div class="content-wrapper  js-content-wrapper">
+
+
+      <section data-anim="fade" class="breadcrumbs ">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="breadcrumbs__content">
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">صفحه اصلی</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">سایر</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">فروشگاه</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">لیست محصولات</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="page-header -type-1">
+        <div class="container">
+          <div class="page-header__content">
+            <div class="row justify-center text-center">
+              <div class="col-auto">
+                <div data-anim="slide-up delay-1">
+
+                  <h1 class="page-header__title">لیست محصولات</h1>
+
+                </div>
+
+                <div data-anim="slide-up delay-2">
+
+                  <p class="page-header__text">ما ماموریت داریم دوره‌های جذاب و مدیریت‌شده را با قیمتی مناسب ارائه دهیم.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="layout-pt-md layout-pb-lg">
+        <div class="container">
+          <div class="row x-gap-60">
+            <div class="col-lg-3">
+
+              <div data-anim="slide-up delay-3" class="sidebar -shop">
+                <div class="sidebar__item">
+
+                  <div class="sidebar__search mb-30">
+                    <div class="search">
+                      <form action="#">
+                        <button class="submit" type="submit">
+                          <i class="icon" data-feather="search"></i>
+                        </button>
+                        <input class="field" type="text" placeholder="جستجوی کالا">
+                      </form>
+                    </div>
+                  </div>
+
+                  <h5 class="sidebar__title">دسته بندی ها</h5>
+
+                  <div class="sidebar-content -list">
+
+                    <a class="text-dark-1" href="#">طراحی سایت</a>
+
+                    <a class="text-dark-1" href="#">برنامه نویسی</a>
+
+                    <a class="text-dark-1" href="#">گرافیک</a>
+
+                    <a class="text-dark-1" href="#">دوره آنلاین</a>
+
+                    <a class="text-dark-1" href="#">بازاریابی</a>
+
+                    <a class="text-dark-1" href="#">هوش مصنوعی</a>
+
+                  </div>
+                </div>
+
+                <div class="sidebar__item">
+                  <h5 class="sidebar__title">فیلتر با قیمت</h5>
+
+                  <div class="sidebar-content -slider">
+                    <div class="js-price-rangeSlider">
+                      <div class="px-5">
+                        <div class="js-slider"></div>
+                      </div>
+
+                      <div class="mt-25">
+                        <div class="d-flex items-center justify-between text-14">
+                          <span>حداقل قیمت: <span class="js-lower"></span></span>
+                          <span>حداکثر قیمت: <span class="js-upper"></span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sidebar__item">
+                  <h5 class="sidebar__title">برچسب ها</h5>
+
+                  <div class="sidebar-content -tags">
+
+                    <div class="sidebar-tag">
+                      <a class="text-11 fw-500 text-dark-1" href="#">دوره آنلاین</a>
+                    </div>
+
+                    <div class="sidebar-tag">
+                      <a class="text-11 fw-500 text-dark-1" href="#">آموزشی</a>
+                    </div>
+
+                    <div class="sidebar-tag">
+                      <a class="text-11 fw-500 text-dark-1" href="#">مهاجرت</a>
+                    </div>
+
+                    <div class="sidebar-tag">
+                      <a class="text-11 fw-500 text-dark-1" href="#">کنکور</a>
+                    </div>
+
+                    <div class="sidebar-tag">
+                      <a class="text-11 fw-500 text-dark-1" href="#">دانشگاهی</a>
+                    </div>
+
+                    <div class="sidebar-tag">
+                      <a class="text-11 fw-500 text-dark-1" href="#">گرافیک</a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-lg-9">
+              <div class="row y-gap-10 justify-between items-center">
+                <div class="col-auto">
+                  <div class="text-14">
+                    نمایش <span class="fw-500 text-dark-1">250</span> نتیجه
+                  </div>
+                </div>
+
+                <div class="col-auto">
+                  <div class="d-flex items-center">
+                    <div class="fw-500 text-dark-1 ml-20">
+                      مرتب سازی:
+                    </div>
+
+                    <div class="dropdown js-shop-dropdown">
+                      <div class="d-flex items-center text-14">
+                        <span class="js-dropdown-title">
+                          پیش فرض
+                        </span>
+                        <i class="icon size-20 mr-40" data-feather="chevron-down"></i>
+                      </div>
+
+                      <div class="dropdown__item">
+                        <div class="text-14 y-gap-15 js-dropdown-list">
+                          <div>
+                            <a class="d-block decoration-none js-dropdown-link" href="{% url 'product:total_product' %}">پیش فرض</a>
+                          </div>
+                          {% for i in total_category %}
+                          <div>
+                            <a class="d-block decoration-none js-dropdown-link" href="#">{{i.name}}</a>
+                          </div>
+                          {% endfor %}
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row y-gap-30 pt-30">
+                {% for i in total_product %}
+                <div class="col-lg-4 col-sm-6">
+                  <div class="productCard -type-1 text-center">
+                    <div class="productCard__image">
+                      <img width="250px" height="250px" style="border-radius: 10%" src="{{i.picture1.url}}" alt="Product image">
+
+                      <div class="productCard__controls">
+                        <a href="{{i.get_absolute_url}}" class="productCard__icon">
+                          <i class="icon" data-feather="eye"></i>
+                        </a>
+                        <a href="#" class="productCard__icon">
+                          <i class="icon" data-feather="heart"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="productCard__content mt-20">
+                      <div class="text-14 lh-1">
+                        {% for j in i.tags.all  %}
+                        <a href="#">{{j.name}}</a>،
+                        {% endfor %}
+                      </div>
+                      <h4 class="text-16 fw-500 mt-15"> {{i.product_name}}  </h4>
+                      <div class="text-17 fw-500 text-purple-1 mt-15">{{i.price}} تومان</div>
+
+                      <div class="productCard__button d-inline-block">
+                        <a href="#" class="button -md -outline-purple-1 text-dark-1 mt-15">افزودن به سبد</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+
+              </div>
+
+              <div class="row justify-center pt-60 lg:pt-40">
+                <div class="col-auto">
+                  <div class="pagination -buttons">
+                    <button class="pagination__button -prev">
+                      <i class="icon icon-chevron-right"></i>
+                    </button>
+
+                    <div class="pagination__count">
+                      <a href="#">1</a>
+                      <a class="-count-is-active" href="#">2</a>
+                      <a href="#">3</a>
+                      <span>...</span>
+                      <a href="#">67</a>
+                    </div>
+
+                    <button class="pagination__button -next">
+                      <i class="icon icon-chevron-left"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {% block footer %}
+      {% include 'footer.html' %}
+      {% endblock footer %}
+
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="{% static 'front/vendor/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'front/js/vendors.js' %}"></script>
+  <script src="{% static 'front/js/main.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/shop-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:32:03 GMT -->
+</html>
