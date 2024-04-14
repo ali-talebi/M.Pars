@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'Event.apps.EventConfig' ,
     'django.contrib.humanize' ,
     'course.apps.CourseConfig' ,
+    'orders.apps.OrdersConfig' ,
 ]
 
 MIDDLEWARE = [

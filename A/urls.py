@@ -28,6 +28,7 @@ urlpatterns = [
     path('products/', include('product.urls')) ,
     path('Events/' , include('Event.urls')) ,
     path('', include('course.urls')) ,
+    path('orders/', include('orders.urls'))
 
 ]
 if settings.DEBUG:

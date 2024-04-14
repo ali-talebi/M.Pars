@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from .models import Product_Product , Category_Product , Tag_Product
 from django.views import View
+from orders.forms import CartAddForm
 # Create your views here.
+
+
+
 
 
 
@@ -19,12 +23,18 @@ class Total_Product(View):
 
     def get(self, request):
 
-        content = {'total_product' : self.total_product , 'total_category' : self.total_category }
+        content = {'total_product' : self.total_product ,
+                   'total_category' : self.total_category ,
+                   'add_form' : CartAddForm() ,
+                   }
         return render(request , self.template_name , content )
 
 
     def post(self, request):
-        content = {'total_product' : self.total_product , 'total_category' : self.total_category }
+        content = {'total_product' : self.total_product ,
+                   'total_category' : self.total_category ,
+                   'form' : CartAddForm() ,
+                   }
         return render(request , self.template_name , content )
 
 

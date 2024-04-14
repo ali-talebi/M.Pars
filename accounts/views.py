@@ -1,12 +1,64 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render , redirect
 from django.views import View
-from .forms import UserRegisterForm , VerifyCodeForm
+from .forms import UserRegisterForm , VerifyCodeForm , LoginForm
 import random
 from help_utils import send_otp_code
 from .models import otpCode , User , Team_Member
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import authenticate , login , logout
 
 # Create your views here.
+
+
+
+class LogoutView(LoginRequiredMixin,View):
+
+    def get(self, request):
+        logout(request)
+        return redirect('home:home')
+
+
+class LoginView(View) :
+
+
+
+    def dispatch(self, request, *args, **kwargs):
+        if  self.request.user.is_authenticated :
+            return redirect('home:home')
+        return super().dispatch(request, *args, **kwargs)
+
+
+    form = LoginForm
+    template_name = "accounts/login.html"
+
+    def get(self,request,*args) :
+        content = {
+            'form':self.form()
+        }
+        return render(request,self.template_name , content  )
+
+    def post(self,request,*args , **kwargs ):
+        form = self.form(request.POST)
+        if form.is_valid() :
+            phone = form.cleaned_data['phone']
+            password = form.cleaned_data['password']
+            user = authenticate(request , phone = phone, password = password )
+            if user :
+                login(request , user )
+                messages.success(request, 'شما با موفقیت وارد شدید' , 'success')
+                return redirect('home:home')
+            else :
+                messages.error(request , 'اطلاعات شما درست نیست' , 'error' )
+
+
+
+        content = {
+            'form':self.form()
+        }
+        return render(request,self.template_name,content)
+
 
 
 
@@ -91,3 +143,7 @@ class TeamProfileView(View) :
     def post(self, request , id ):
         content = {'team_member_profile': self.teammember_profile }
         return render(request, self.template_name, content  )
+
+
+
+

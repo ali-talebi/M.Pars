@@ -1,0 +1,357 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/shop-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:32:01 GMT -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'front/css/base.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/choices.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/css/all.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'front/vendor/leaflet/leaflet.css' %}"/>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{% static 'front/css/vendors.css' %}">
+  <link rel="stylesheet" href="{% static 'front/css/main.css' %}">
+
+  <title> سبد خرید  </title>
+</head>
+
+<body class="preloader-visible" data-barba="wrapper">
+  <!-- preloader start -->
+  <div class="preloader js-preloader">
+    <div class="preloader__bg"></div>
+  </div>
+  <!-- preloader end -->
+
+
+  <main class="main-content">
+
+    {% block header %}
+    {% include 'menu.html' %}
+    {% endblock %}
+
+
+    <div class="content-wrapper  js-content-wrapper">
+
+
+      <section data-anim="fade" class="breadcrumbs ">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="breadcrumbs__content">
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">صفحه اصلی</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">سایر</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">فروشگاه</a>
+                </div>
+
+                <div class="breadcrumbs__item ">
+                  <a href="#">سبد خرید</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="page-header -type-1">
+        <div class="container">
+          <div class="page-header__content">
+            <div class="row justify-center text-center">
+              <div class="col-auto">
+                <div data-anim="slide-up delay-1">
+
+                  <h1 class="page-header__title">سبد خرید</h1>
+
+                </div>
+
+                <div data-anim="slide-up delay-2">
+
+                  <p class="page-header__text">ما ماموریت داریم دوره‌های جذاب و مدیریت‌شده را با قیمتی مناسب ارائه دهیم.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="layout-pt-md layout-pb-lg">
+        <div class="container">
+          <div class="row justify-end">
+            <div class="col-12">
+              <div class="px-30 pr-60 py-25 rounded-8 bg-light-6 md:d-none">
+                <div class="row justify-between">
+                  <div class="col-md-4">
+                    <div class="fw-500 text-purple-1">نام کالا</div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="fw-500 text-purple-1">قیمت</div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="fw-500 text-purple-1">تعداد</div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="fw-500 text-purple-1">جمع کل</div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="d-flex justify-end">
+                      <div class="fw-500 text-purple-1">حذف</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="px-30 pr-60 md:px-0">
+
+                <div class="row y-gap-20 justify-between items-center pt-30 pb-30 border-bottom-light">
+                  <div class="col-md-4">
+                    <div class="d-flex items-center">
+                      <div class="">
+                        <div class="size-100 bg-image rounded-8 js-lazy" data-bg="img/shop/products/1.png"></div>
+                      </div>
+                      <div class="fw-500 text-dark-1 mr-30">ساعت دیواری چوبی</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 md:mt-15">
+                    <div class="">
+                      <div class="shopCart-products__title d-none md:d-block mb-10">
+                        قیمت
+                      </div>
+                      <p>298000 تومان</p>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="">
+                      <div class="shopCart-products__title d-none md:d-block mb-10">
+                        تعداد
+                      </div>
+
+                      <div class="input-counter md:mt-20 js-input-counter">
+                        <input class='input-counter__counter' type="number" placeholder="value..." value='1' />
+
+                        <div class="input-counter__controls">
+                          <button class='input-counter__up js-down'>
+                            <i class='icon' data-feather="minus"></i>
+                          </button>
+
+                          <button class='input-counter__down js-up'>
+                            <i class='icon' data-feather="plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-1">
+                    <div class="">
+                      <div class="shopCart-products__title d-none md:d-block mb-10">
+                        جمع کل
+                      </div>
+
+                      <p>526 تومان</p>
+                    </div>
+                  </div>
+
+                  <div class="col-md-1">
+                    <div class="md:d-none d-flex justify-end">
+                      <i class="icon" data-feather="x"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row y-gap-20 justify-between items-center pt-30 pb-30 border-bottom-light">
+                  <div class="col-md-4">
+                    <div class="d-flex items-center">
+                      <div class="">
+                        <div class="size-100 bg-image rounded-8 js-lazy" data-bg="img/shop/products/2.png"></div>
+                      </div>
+                      <div class="fw-500 text-dark-1 mr-30">کفش پیاده روی مردانه</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 md:mt-15">
+                    <div class="">
+                      <div class="shopCart-products__title d-none md:d-block mb-10">
+                        قیمت
+                      </div>
+                      <p>298000 تومان</p>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="">
+                      <div class="shopCart-products__title d-none md:d-block mb-10">
+                        تعداد
+                      </div>
+
+                      <div class="input-counter md:mt-20 js-input-counter">
+                        <input class='input-counter__counter' type="number" placeholder="value..." value='1' />
+
+                        <div class="input-counter__controls">
+                          <button class='input-counter__up js-down'>
+                            <i class='icon' data-feather="minus"></i>
+                          </button>
+
+                          <button class='input-counter__down js-up'>
+                            <i class='icon' data-feather="plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-1">
+                    <div class="">
+                      <div class="shopCart-products__title d-none md:d-block mb-10">
+                        جمع کل
+                      </div>
+
+                      <p>526 تومان</p>
+                    </div>
+                  </div>
+
+                  <div class="col-md-1">
+                    <div class="md:d-none d-flex justify-end">
+                      <i class="icon" data-feather="x"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row y-gap-20 justify-between items-center pt-30 pb-30 border-bottom-light">
+                  <div class="col-md-4">
+                    <div class="d-flex items-center">
+                      <div class="">
+                        <div class="size-100 bg-image rounded-8 js-lazy" data-bg="img/shop/products/3.png"></div>
+                      </div>
+                      <div class="fw-500 text-dark-1 mr-30">کوله پشتی کوهنوردی</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 md:mt-15">
+                    <div class="">
+                      <div class="shopCart-products__title d-none md:d-block mb-10">
+                        قیمت
+                      </div>
+                      <p>298000 تومان</p>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="">
+                      <div class="shopCart-products__title d-none md:d-block mb-10">
+                        تعداد
+                      </div>
+
+                      <div class="input-counter md:mt-20 js-input-counter">
+                        <input class='input-counter__counter' type="number" placeholder="value..." value='1' />
+
+                        <div class="input-counter__controls">
+                          <button class='input-counter__up js-down'>
+                            <i class='icon' data-feather="minus"></i>
+                          </button>
+
+                          <button class='input-counter__down js-up'>
+                            <i class='icon' data-feather="plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-1">
+                    <div class="">
+                      <div class="shopCart-products__title d-none md:d-block mb-10">
+                        جمع کل
+                      </div>
+
+                      <p>526 تومان</p>
+                    </div>
+                  </div>
+
+                  <div class="col-md-1">
+                    <div class="md:d-none d-flex justify-end">
+                      <i class="icon" data-feather="x"></i>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="shopCart-footer px-16 mt-30">
+                <div class="row justify-between y-gap-30">
+                  <div class="col-xl-5">
+                    <form class="" action="#">
+                      <div class="d-flex justify-between border-dark">
+                        <input class="rounded-8 px-25 py-20" type="text" placeholder="کد تخفیف">
+                        <button class="text-black fw-500" type="submit">اعمال کد تخفیف</button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <div class="col-auto">
+                    <div class="shopCart-footer__item">
+                      <button class="button -md -purple-3 text-purple-1">بروزرسانی</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-5 layout-pt-lg">
+              <div class="py-30 bg-light-4 rounded-8 border-light">
+                <h5 class="px-30 text-20 fw-500">
+                  مبلغ صورت حساب
+                </h5>
+
+                <div class="d-flex justify-between px-30 item mt-25">
+                  <div class="py-15 fw-500 text-dark-1">جمع کل</div>
+                  <div class="py-15 fw-500 text-dark-1">128000 تومان</div>
+                </div>
+
+                <div class="d-flex justify-between px-30 item border-top-dark">
+                  <div class="pt-15 fw-500 text-dark-1">جمع</div>
+                  <div class="pt-15 fw-500 text-dark-1">3259000 تومان</div>
+                </div>
+              </div>
+
+              <a href="shop-checkout.html" class="button -md -purple-1 text-white col-12 mt-30">تسویه حساب</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {% block footer %}
+      {% include 'footer.html' %}
+      {% endblock %}
+
+
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="{% static 'front/vendor/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'front/js/vendors.js' %}"></script>
+  <script src="{% static 'front/js/main.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/educrat/rtl/shop-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Aug 2023 07:32:02 GMT -->
+</html>
