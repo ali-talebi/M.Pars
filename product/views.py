@@ -13,15 +13,20 @@ class Total_Product(View):
 
     template_name = 'product/shop-list.html'
 
-    def setup(self, request, *args, **kwargs):
+    def setup(self, request , product_slug =None, *args , **kwargs):
         self.total_product  = Product_Product.objects.all()
         self.total_category = Category_Product.objects.all()
+
+        if product_slug:
+            self.total_category = self.total_category.filter(slug=product_slug)
+            self.total_product = self.total_product.filter(slug = self.total_category )
+
         return super().setup(request , *args , **kwargs )
 
 
 
 
-    def get(self, request):
+    def get(self, request , product_slug=None  ):
 
         content = {'total_product' : self.total_product ,
                    'total_category' : self.total_category ,
@@ -30,7 +35,7 @@ class Total_Product(View):
         return render(request , self.template_name , content )
 
 
-    def post(self, request):
+    def post(self, request , product_slug=None ):
         content = {'total_product' : self.total_product ,
                    'total_category' : self.total_category ,
                    'form' : CartAddForm() ,

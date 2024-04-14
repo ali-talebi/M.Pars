@@ -112,19 +112,9 @@
                   <h5 class="sidebar__title">دسته بندی ها</h5>
 
                   <div class="sidebar-content -list">
-
-                    <a class="text-dark-1" href="#">طراحی سایت</a>
-
-                    <a class="text-dark-1" href="#">برنامه نویسی</a>
-
-                    <a class="text-dark-1" href="#">گرافیک</a>
-
-                    <a class="text-dark-1" href="#">دوره آنلاین</a>
-
-                    <a class="text-dark-1" href="#">بازاریابی</a>
-
-                    <a class="text-dark-1" href="#">هوش مصنوعی</a>
-
+                    {% for i in total_category %}
+                    <a class="text-dark-1" href="{% url 'product:total_product' i.slug %}"> {{i.name}} </a>
+                    {% endfor %}
                   </div>
                 </div>
 

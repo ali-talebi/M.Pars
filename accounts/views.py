@@ -22,12 +22,16 @@ class LogoutView(LoginRequiredMixin,View):
 
 class LoginView(View) :
 
-
+    def setup(self, request, *args, **kwargs):
+        self.next = request.GET.get('next')
+        return super().setup(request , *args , **kwargs )
 
     def dispatch(self, request, *args, **kwargs):
         if  self.request.user.is_authenticated :
             return redirect('home:home')
         return super().dispatch(request, *args, **kwargs)
+
+
 
 
     form = LoginForm
@@ -42,12 +46,14 @@ class LoginView(View) :
     def post(self,request,*args , **kwargs ):
         form = self.form(request.POST)
         if form.is_valid() :
-            phone = form.cleaned_data['phone']
-            password = form.cleaned_data['password']
-            user = authenticate(request , phone = phone, password = password )
+            form_phone = form.cleaned_data['phone']
+            form_password = form.cleaned_data['password']
+            user = authenticate(request , phone = form_phone, password = form_password )
             if user :
                 login(request , user )
                 messages.success(request, 'شما با موفقیت وارد شدید' , 'success')
+                if self.next :
+                    return redirect(self.next)
                 return redirect('home:home')
             else :
                 messages.error(request , 'اطلاعات شما درست نیست' , 'error' )
